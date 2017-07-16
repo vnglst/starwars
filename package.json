@@ -1,0 +1,25 @@
+{
+  "name": "starwars",
+  "version": "1.0.0",
+  "description": "Star Wars Intro",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "deploy": "surge -p ./",
+    "start": "browser-sync start --server --files '**'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vnglst/starwars.git"
+  },
+  "keywords": [],
+  "author": "Koen van Gilst <koen.vangilst@gmail.com> (http://koenvangilst.nl)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/vnglst/starwars/issues"
+  },
+  "homepage": "https://github.com/vnglst/starwars#readme",
+  "devDependencies": {
+    "browser-sync": "^2.18.12"
+  }
+}
