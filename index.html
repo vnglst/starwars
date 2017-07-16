@@ -10,6 +10,7 @@
 
 <style type="text/css">
     /* Inspiration for scrolling css: https://www.sitepoint.com/css3-starwars-scrolling-text/ */
+
     @import url(https://fonts.googleapis.com/css?family=News+Cycle:400,700);
 
     * {
@@ -31,17 +32,7 @@
         justify-content: center;
     }
 
-    #starfield {
-        filter: blur(2px);
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-    }
-
     #source {
-        z-index: 2;
         position: absolute;
         bottom: 0;
         right: 0;
@@ -60,12 +51,13 @@
 
     p#start {
         position: fixed;
+        left: 10%;
+        top: 40%;
         width: 80%;
         font-size: 200%;
         font-weight: 400;
         color: #4ee;
         opacity: 0;
-        z-index: 1;
         animation: intro 8s ease-out;
         filter: blur(1px);
     }
@@ -166,8 +158,6 @@
     <!-- No sound on mobile, sorry (due to autoplay restrictions) -->
     <audio src='sounds/Star_Wars_original_opening_crawl_1977.mp3' autoplay loop></audio>
 
-    <canvas id="starfield"></canvas>
-
     <p id="start">A long time ago in a galaxy far, far away&hellip;</p>
 
     <div id="titles">
@@ -188,111 +178,6 @@
     </div>
 
     <a href="https://github.com/vnglst/starwars" id='source'><span>🖖🏽</span></a>
-
-    <script>
-        // star types and their colors
-        // source: http://www.vendian.org/mncharity/dir3/starcolor/
-        var starTypes = [{
-                type: 'O',
-                trueColor: 'rgb(155, 176, 255)',
-                visibleColor: 'rgb(195, 195, 195)'
-            },
-            {
-                type: 'B',
-                trueColor: 'rgb(170, 191, 255)',
-                visibleColor: 'rgb(205, 205, 205)'
-            },
-            {
-                type: 'A',
-                trueColor: 'rgb(202, 215, 255)',
-                visibleColor: 'rgb(224, 224, 224)'
-            },
-            {
-                type: 'F',
-                trueColor: 'rgb(248, 247, 255)',
-                visibleColor: 'rgb(250, 250, 250)'
-            },
-            {
-                type: 'G',
-                trueColor: 'rgb(255, 244, 234)',
-                visibleColor: 'rgb(244, 244, 244)'
-            },
-            {
-                type: 'K',
-                trueColor: 'rgb(255, 210, 161)',
-                visibleColor: 'rgb(209, 209, 209)'
-            },
-            {
-                type: 'M',
-                trueColor: 'rgb(255, 204, 111)',
-                visibleColor: 'rgb(190, 190, 190)'
-            },
-        ]
-
-        var starfield = document.getElementById('starfield');
-        var width = starfield.width = window.innerWidth;
-        var height = starfield.height = window.innerHeight;
-        var numberOfStars = width / 5;
-        var showTrueColors = false;
-
-        // get random element from array
-        getRandomElement = function (arr) {
-            return arr[Math.floor((Math.random() * arr.length))];
-        }
-
-        // create an empty array of stars
-        var stars = [];
-
-        // creates one star
-        function createStar() {
-            // get random star type (mainly color/brightness)
-            var starType = getRandomElement(starTypes)
-            return {
-                trueColor: starType.trueColor,
-                visibleColor: starType.visibleColor,
-                x: Math.random() * starfield.width,
-                y: Math.random() * starfield.height,
-                size: Math.random() * 1,
-            }
-        }
-
-        // adds one star to array
-        function addStar() {
-            stars.push(createStar())
-        }
-
-        // adds n stars to array
-        function addNStars(n) {
-            for (var i = 0; i < n; i++) addStar()
-        }
-
-        // generates initial stars
-        addNStars(numberOfStars);
-
-        var ctx = starfield.getContext('2d');
-
-        // draws stars
-        function draw() {
-            // redraw screen in black
-            ctx.fillStyle = 'rgba(0, 0, 0)';
-            ctx.fillRect(0, 0, width, height);
-
-            // loop through all stars, draw them and add +1 to position
-            stars.forEach(function (star, index) {
-
-                // star color
-                ctx.fillStyle = showTrueColors ? star.trueColor : star.visibleColor;
-
-                // plot star
-                ctx.beginPath();
-                ctx.arc(star.x, star.y, star.size, 0, Math.PI * 2, true);
-                ctx.closePath();
-                ctx.fill()
-            });
-        };
-
-        draw();
-    </script>
 
     <!--
         Star Wars Logo as SVG 
