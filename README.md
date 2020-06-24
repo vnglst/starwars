@@ -1,22 +1,9 @@
 # Star Wars Intro CSS3 + HTML5 Demo
 
-## Features
-
--
--
--
-
 ## Development
 
 ````
 yarn start
-````
-
-## Deploying
-
-Uses Surge.sh for deployment:
-````
-yarn deploy
 ````
 
 ## License
